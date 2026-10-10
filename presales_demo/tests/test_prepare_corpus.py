@@ -1,7 +1,7 @@
 """Verify the documented Markdown-to-TXT staging workflow."""
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 
 from presales_demo.prepare_corpus import stage
 
