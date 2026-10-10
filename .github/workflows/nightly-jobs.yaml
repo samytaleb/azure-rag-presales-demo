@@ -1,8 +1,7 @@
 name: Nightly Jobs
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  # Daily full upstream matrix disabled in this portfolio fork.
   workflow_dispatch:
 
 jobs:
