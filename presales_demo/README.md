@@ -19,10 +19,11 @@ A demo assistant should retrieve the relevant documentation, give a clear and ev
 
 | Component | Purpose |
 | --- | --- |
-| [Synthetic source documents](data/) | Fictional B2B product, pricing, security and implementation documents |
+| [Synthetic source documents](data/) | Fictional B2B policies in Markdown, staged as supported TXT files before Azure ingestion |
 | [Evaluation scenarios](scenarios.json) | 12 hand-authored business questions with expected terms, citations and forbidden claims |
 | [Offline response fixtures](fixtures/answers.jsonl) | Deterministic examples to test the evaluator without an LLM |
 | [Evaluation engine](evaluate.py) | Validates answers, source references and absent unsupported phrases; optionally calls an Azure deployment |
+| [Corpus staging tool](prepare_corpus.py) | Generates plain-text files in upstream's `data/` directory for documented ingestion support |
 | [Unit tests](tests/test_evaluate.py) | Checks parsing, incorrect facts, citations, missing fixtures, URL protections and JSON validation |
 | [GitHub Actions](../.github/workflows/presales-demo.yml) | Runs unit tests and offline replay on every relevant code change |
 
@@ -53,6 +54,7 @@ From the repository root:
 
 ```bash
 python -m unittest discover -s presales_demo/tests -v
+python -m presales_demo.prepare_corpus
 python -m presales_demo.evaluate --mode fixtures
 python -m presales_demo.evaluate --mode fixtures --report presales_demo_report.json
 ```
@@ -72,7 +74,7 @@ The optional report stores per-case pass/fail, missing keywords/citations and la
 ## Real deployment experiment — requires Azure
 
 1. Follow the official project's [getting started guide](../README.md#getting-started), [deployment documentation](../docs/azd.md) and [data ingestion guide](../docs/data_ingestion.md).
-2. Create a **separate demonstration dataset/index** and ingest the four `presales_demo/data/*.md` files. Do not mix these fictional policy documents into a production knowledge base.
+2. Create a **separate demonstration dataset/index**, then from the repo root run `python -m presales_demo.prepare_corpus` to stage four supported `data/01-product.txt`, `02-pricing.txt`, `03-security.txt`, `04-implementation.txt` files. The upstream manual ingestion documentation explicitly lists TXT (not Markdown) as supported. Run `./scripts/prepdocs.sh` (Linux/macOS) or `./scripts/prepdocs.ps1` (PowerShell) with a configured `azd` environment to ingest data. **Be aware that upstream ingestion also processes other files already under `data/`; isolate the dataset/index when measuring the presales pack.** The staging output is gitignored.
 3. Test the upstream chat interface manually and check that it can cite your ingested documents.
 4. Evaluate the non-streaming **`POST /chat`** endpoint:
 
@@ -103,7 +105,7 @@ Token acquisition depends on the upstream app's authentication configuration. Th
 Each scenario defines:
 
 - **Required facts:** a set of case-insensitive keyword alternatives; all groups must match.
-- **Required document citations:** filenames that must appear as explicit Markdown bracket citations (e.g. `[02-pricing.md]`).
+- **Required document citations:** filenames that must appear as explicit Markdown bracket citations (e.g. `[02-pricing.txt]`).
 - **Forbidden claims:** phrases that indicate an unsupported promise (e.g. a guaranteed uptime percentage).
 - **Abstention expectation:** cases requiring explicit uncertainty, such as a certification not established in the documents.
 - **Category:** product-fit, commercial, security, operations, solution engineering or unsupported claims.
@@ -117,7 +119,7 @@ This is a **deliberately transparent, low-cost heuristic regression suite**. It 
 | Situation | Expected harness behavior |
 | --- | --- |
 | Correct answer with required citations | Pass |
-| Correct facts but no `[source.md]` citation | Fail |
+| Correct facts but no `[source.txt]` citation | Fail |
 | Wrong pricing or limits | Fail |
 | Unsupported guarantee | Fail |
 | Missing fixture or malformed schema | Fail closed |
@@ -138,7 +140,7 @@ The purpose is to explain to stakeholders **what can be trusted, what cannot yet
 
 ## Reproducible development workflow
 
-- Write/adjust fictional product-policy documents.
+- Write/adjust fictional product-policy Markdown documents, then stage their TXT ingestion copies with `python -m presales_demo.prepare_corpus`.
 - Define expectation cases in `scenarios.json`.
 - Update fixture responses as demonstrations of *expected* reasoning, not proof of model output.
 - Run `python -m unittest discover -s presales_demo/tests -v`.
@@ -151,7 +153,7 @@ The purpose is to explain to stakeholders **what can be trusted, what cannot yet
 - This extension must **not** be used to ingest restricted company files or real customer data.
 - No business policies here are real commercial commitments.
 - The live API client expects JSON with an `output_text` string from the upstream `/chat` endpoint. Upstream protocol changes may require adapter updates.
-- Its basic Markdown citation parser recognizes `[document.md]` or `[document.pdf#page=1]`. If a deployment emits another citation syntax, review and adapt the parser before interpreting the results.
+- Its basic Markdown citation parser recognizes `[document.txt]`, `[document.md]` or `[document.pdf#page=1]`. If a deployment emits another citation syntax, review and adapt the parser before interpreting the results.
 - No production guardrails, monitoring service, access-control implementation or CI-based Azure deployment are provided by this extension. Use the upstream production/security guidance before considering real-world use.
 - **Auth tokens are not included in fixture data, reports, GitHub Actions or logs.** Never commit secrets.
 
