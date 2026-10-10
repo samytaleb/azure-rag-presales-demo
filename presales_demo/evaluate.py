@@ -19,7 +19,7 @@ from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent
-SOURCES_PATTERN = re.compile(r"\[([^\[\]\n]+?\.(?:md|pdf))(?:#[^\]\n]*)?\]", re.I)
+SOURCES_PATTERN = re.compile(r"\[([^\[\]\n]+?\.(?:md|txt|pdf))(?:#[^\]\n]*)?\]", re.I)
 
 
 def load_cases(path: Path) -> list[dict]:
@@ -58,7 +58,7 @@ def load_fixtures(path: Path) -> dict[str, str]:
 
 
 def extract_sources(answer: str) -> set[str]:
-    """Extract explicit [file.md] or [file.pdf#page=1] citations only."""
+    """Extract explicit [file.txt], [file.md] or [file.pdf#page=1] citations."""
     return {Path(match).name.casefold() for match in SOURCES_PATTERN.findall(answer)}
 
 
