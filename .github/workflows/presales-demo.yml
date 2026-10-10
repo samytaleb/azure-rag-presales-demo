@@ -21,4 +21,6 @@ jobs:
       - name: Validate upstream TXT ingestion staging
         run: python -m presales_demo.prepare_corpus --output /tmp/presales-staging
       - name: Replay deterministic synthetic evaluation fixtures
-        run: python -m presales_demo.evaluate --mode fixtures
+        run: |
+          python -m presales_demo.evaluate --mode fixtures --report /tmp/presales-evaluation.json
+          python -m presales_demo.report_html --input /tmp/presales-evaluation.json --output /tmp/presales-evaluation.html
