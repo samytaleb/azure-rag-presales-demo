@@ -24,8 +24,9 @@ A demo assistant should retrieve the relevant documentation, give a clear and ev
 | [Offline response fixtures](fixtures/answers.jsonl) | Deterministic examples to test the evaluator without an LLM |
 | [Evaluation engine](evaluate.py) | Validates answers, source references and absent unsupported phrases; optionally calls an Azure deployment |
 | [Corpus staging tool](prepare_corpus.py) | Generates plain-text files in upstream's `data/` directory for documented ingestion support |
-| [Unit tests](tests/test_evaluate.py) | Checks parsing, incorrect facts, citations, missing fixtures, URL protections and JSON validation |
-| [GitHub Actions](../.github/workflows/presales-demo.yml) | Runs unit tests and offline replay on every relevant code change |
+| [Unit tests](tests/) | Checks parsing, incorrect facts, citations, missing fixtures, staging safety, HTML escaping and URL protections |
+| [HTML stakeholder dashboard](report_html.py) | Renders a static, privacy-conscious summary with category coverage and case outcomes |
+| [GitHub Actions](../.github/workflows/presales-demo.yml) | Runs tests, corpus staging and offline replay on every relevant code change |
 
 All business names, policies, prices and limits in this extension are **fictional**. No SAP assets, company data, customer records or proprietary prompt chains are used.
 
@@ -57,6 +58,7 @@ python -m unittest discover -s presales_demo/tests -v
 python -m presales_demo.prepare_corpus
 python -m presales_demo.evaluate --mode fixtures
 python -m presales_demo.evaluate --mode fixtures --report presales_demo_report.json
+python -m presales_demo.report_html --input presales_demo_report.json --output presales_demo_report.html
 ```
 
 Expected output for the included hand-authored replay cases:
@@ -69,7 +71,7 @@ Pass rate (heuristic): 100%
 
 This score merely shows that the synthetic reference responses satisfy the **rule-based checks**. It is **not a measured RAG model accuracy score**. No Azure service, live retrieval or LLM call is exercised by the fixture replay.
 
-The optional report stores per-case pass/fail, missing keywords/citations and latency without storing the generated answers or auth tokens. Review the report before sharing it, especially when evaluating real user questions or remote endpoints.
+The optional JSON and static HTML reports show per-case pass/fail, category coverage, missing keywords/citations and latency without storing generated answers or auth tokens. The HTML renderer escapes any untrusted report values. Review the report before sharing it, especially when evaluating real user questions or remote endpoints.
 
 ## Real deployment experiment — requires Azure
 
