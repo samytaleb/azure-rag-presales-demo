@@ -17,7 +17,7 @@
         ]
       ],
       "required_sources": [
-        "01-product.md"
+        "01-product.txt"
       ],
       "forbidden_terms": [
         "real-time write-back",
@@ -36,7 +36,7 @@
         ]
       ],
       "required_sources": [
-        "01-product.md"
+        "01-product.txt"
       ],
       "forbidden_terms": [
         "unlimited"
@@ -62,7 +62,7 @@
         ]
       ],
       "required_sources": [
-        "02-pricing.md"
+        "02-pricing.txt"
       ],
       "forbidden_terms": [
         "production trial included"
@@ -83,7 +83,7 @@
         ]
       ],
       "required_sources": [
-        "02-pricing.md"
+        "02-pricing.txt"
       ],
       "forbidden_terms": [
         "unlimited users"
@@ -103,7 +103,7 @@
         ]
       ],
       "required_sources": [
-        "02-pricing.md"
+        "02-pricing.txt"
       ],
       "forbidden_terms": [
         "$2,500",
@@ -124,7 +124,7 @@
         ]
       ],
       "required_sources": [
-        "03-security.md"
+        "03-security.txt"
       ],
       "forbidden_terms": [
         "starter includes saml"
@@ -144,7 +144,7 @@
         ]
       ],
       "required_sources": [
-        "03-security.md"
+        "03-security.txt"
       ],
       "forbidden_terms": [
         "asia-pacific"
@@ -178,7 +178,7 @@
         ]
       ],
       "required_sources": [
-        "04-implementation.md"
+        "04-implementation.txt"
       ],
       "forbidden_terms": [
         "24/7 support included"
@@ -198,7 +198,7 @@
         ]
       ],
       "required_sources": [
-        "04-implementation.md"
+        "04-implementation.txt"
       ],
       "forbidden_terms": [],
       "abstain": false
@@ -218,7 +218,7 @@
         ]
       ],
       "required_sources": [
-        "03-security.md"
+        "03-security.txt"
       ],
       "forbidden_terms": [
         "is soc 2 certified",
@@ -241,7 +241,7 @@
         ]
       ],
       "required_sources": [
-        "04-implementation.md"
+        "04-implementation.txt"
       ],
       "forbidden_terms": [
         "guarantee 99.99%",
@@ -264,7 +264,7 @@
         ]
       ],
       "required_sources": [
-        "03-security.md"
+        "03-security.txt"
       ],
       "forbidden_terms": [
         "regulator certified",
