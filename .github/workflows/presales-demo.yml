@@ -18,5 +18,7 @@ jobs:
           python-version: '3.12'
       - name: Check unit tests
         run: python -m unittest discover -s presales_demo/tests -v
+      - name: Validate upstream TXT ingestion staging
+        run: python -m presales_demo.prepare_corpus --output /tmp/presales-staging
       - name: Replay deterministic synthetic evaluation fixtures
         run: python -m presales_demo.evaluate --mode fixtures
