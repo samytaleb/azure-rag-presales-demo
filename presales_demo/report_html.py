@@ -51,7 +51,7 @@ def render_html(report: dict) -> str:
 
     latency = report.get("average_latency_ms")
     latency_text = "Not measured" if latency is None else esc(latency) + " ms"
-    return """<!doctype html>
+    return ("""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Synthetic B2B Presales Evaluation</title>
@@ -81,7 +81,7 @@ Fixture results validate the evaluator, not the Azure RAG system.</p>
 </tr></thead><tbody>""" + "\n".join(rows) + """</tbody></table>
 <footer>Generated from a summary-only JSON report. No raw answers, authentication tokens or customer data are included.
 <a href="https://github.com/Azure-Samples/azure-search-openai-demo">Microsoft upstream</a> is credited separately.</footer>
-</body></html>"""
+</body></html>""")
 
 
 def main(argv=None) -> int:
