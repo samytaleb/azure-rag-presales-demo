@@ -1,0 +1,22 @@
+name: Presales extension — offline tests
+on:
+  push:
+    paths:
+      - 'presales_demo/**'
+      - '.github/workflows/presales-demo.yml'
+  pull_request:
+    paths:
+      - 'presales_demo/**'
+      - '.github/workflows/presales-demo.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check unit tests
+        run: python -m unittest discover -s presales_demo/tests -v
+      - name: Replay deterministic synthetic evaluation fixtures
+        run: python -m presales_demo.evaluate --mode fixtures
