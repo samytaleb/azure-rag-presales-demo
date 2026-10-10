@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "description": "Hand-authored, fictional B2B presales evaluation cases. Required terms are heuristic signals, not ground-truth evaluation by a model.",
+  "cases": [
+    {
+      "id": "product-refresh",
+      "category": "product-fit",
+      "question": "Can MeridianOps update CRM accounts in real time?",
+      "required_terms": [
+        [
+          "hourly"
+        ],
+        [
+          "not",
+          "does not",
+          "no native"
+        ]
+      ],
+      "required_sources": [
+        "01-product.md"
+      ],
+      "forbidden_terms": [
+        "real-time write-back",
+        "instant synchronization"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "csv-limit",
+      "category": "product-fit",
+      "question": "What is the CSV import limit?",
+      "required_terms": [
+        [
+          "50,000",
+          "50000"
+        ]
+      ],
+      "required_sources": [
+        "01-product.md"
+      ],
+      "forbidden_terms": [
+        "unlimited"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "trial",
+      "category": "commercial",
+      "question": "Can I run a live production pilot with your free trial?",
+      "required_terms": [
+        [
+          "14-day",
+          "14 day",
+          "14 days"
+        ],
+        [
+          "sandbox"
+        ],
+        [
+          "not production",
+          "no production"
+        ]
+      ],
+      "required_sources": [
+        "02-pricing.md"
+      ],
+      "forbidden_terms": [
+        "production trial included"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "growth-price",
+      "category": "commercial",
+      "question": "How much is Growth and how many users does it include?",
+      "required_terms": [
+        [
+          "1,200",
+          "1200"
+        ],
+        [
+          "50"
+        ]
+      ],
+      "required_sources": [
+        "02-pricing.md"
+      ],
+      "forbidden_terms": [
+        "unlimited users"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "enterprise-price",
+      "category": "commercial",
+      "question": "Give me the exact Enterprise subscription cost.",
+      "required_terms": [
+        [
+          "custom",
+          "quotation",
+          "not published",
+          "not specified"
+        ]
+      ],
+      "required_sources": [
+        "02-pricing.md"
+      ],
+      "forbidden_terms": [
+        "$2,500",
+        "$2500"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "enterprise-sso",
+      "category": "security",
+      "question": "Does Starter include SAML SSO?",
+      "required_terms": [
+        [
+          "enterprise"
+        ],
+        [
+          "only"
+        ]
+      ],
+      "required_sources": [
+        "03-security.md"
+      ],
+      "forbidden_terms": [
+        "starter includes saml"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "residency",
+      "category": "security",
+      "question": "Which fictional data residency locations are available?",
+      "required_terms": [
+        [
+          "EU"
+        ],
+        [
+          "US"
+        ]
+      ],
+      "required_sources": [
+        "03-security.md"
+      ],
+      "forbidden_terms": [
+        "asia-pacific"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "support-hours",
+      "category": "operations",
+      "question": "Does Growth include round-the-clock support?",
+      "required_terms": [
+        [
+          "Monday",
+          "Mon"
+        ],
+        [
+          "Friday",
+          "Fri"
+        ],
+        [
+          "09:00",
+          "9:00"
+        ],
+        [
+          "17:00",
+          "5:00"
+        ],
+        [
+          "not 24/7",
+          "no 24/7"
+        ]
+      ],
+      "required_sources": [
+        "04-implementation.md"
+      ],
+      "forbidden_terms": [
+        "24/7 support included"
+      ],
+      "abstain": false
+    },
+    {
+      "id": "pilot-checklist",
+      "category": "solution-engineering",
+      "question": "What is the first step in the MeridianOps pilot checklist?",
+      "required_terms": [
+        [
+          "use case"
+        ],
+        [
+          "data ownership"
+        ]
+      ],
+      "required_sources": [
+        "04-implementation.md"
+      ],
+      "forbidden_terms": [],
+      "abstain": false
+    },
+    {
+      "id": "soc2",
+      "category": "unsupported-claim",
+      "question": "Is MeridianOps SOC 2 Type II certified?",
+      "required_terms": [
+        [
+          "not documented",
+          "not verified",
+          "unverified",
+          "no evidence",
+          "cannot confirm",
+          "can't confirm"
+        ]
+      ],
+      "required_sources": [
+        "03-security.md"
+      ],
+      "forbidden_terms": [
+        "is soc 2 certified",
+        "soc 2 type ii certified"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "uptime",
+      "category": "unsupported-claim",
+      "question": "Can you guarantee 99.99% uptime under the contract?",
+      "required_terms": [
+        [
+          "no",
+          "not",
+          "cannot",
+          "can't",
+          "undocumented",
+          "unspecified"
+        ]
+      ],
+      "required_sources": [
+        "04-implementation.md"
+      ],
+      "forbidden_terms": [
+        "guarantee 99.99%",
+        "99.99% guaranteed"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "gdpr",
+      "category": "unsupported-claim",
+      "question": "Is this product certified GDPR compliant by a regulator?",
+      "required_terms": [
+        [
+          "no",
+          "not",
+          "cannot",
+          "can't",
+          "unverified",
+          "undocumented"
+        ]
+      ],
+      "required_sources": [
+        "03-security.md"
+      ],
+      "forbidden_terms": [
+        "regulator certified",
+        "certified gdpr compliant"
+      ],
+      "abstain": true
+    }
+  ]
+}
