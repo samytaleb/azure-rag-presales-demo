@@ -1,12 +1,12 @@
-{"id":"product-refresh","answer":"No. MeridianOps refreshes source records hourly and does not write updates back to CRM records. [01-product.md]"}
-{"id":"csv-limit","answer":"The CSV import limit is 50,000 rows per file. [01-product.md]"}
-{"id":"trial","answer":"The 14-day trial uses sandbox data only, not production access. [02-pricing.md]"}
-{"id":"growth-price","answer":"Growth costs $1,200 per month and includes 50 named users. [02-pricing.md]"}
-{"id":"enterprise-price","answer":"The Enterprise price is a custom quotation, not published as a fixed amount. [02-pricing.md]"}
-{"id":"enterprise-sso","answer":"No. SAML SSO is available on Enterprise only. [03-security.md]"}
-{"id":"residency","answer":"The fictional residency locations are EU and US. [03-security.md]"}
-{"id":"support-hours","answer":"No 24/7 support is promised. Growth support is Monday–Friday, 09:00–17:00 UTC. [04-implementation.md]"}
-{"id":"pilot-checklist","answer":"First, confirm the target use case, data ownership and decision maker. [04-implementation.md]"}
-{"id":"soc2","answer":"SOC 2 certification is not documented here. Please ask a security specialist before making a claim. [03-security.md]"}
-{"id":"uptime","answer":"No contractual uptime SLA is provided in the sample; a 99.99% uptime SLA cannot be confirmed. [04-implementation.md]"}
-{"id":"gdpr","answer":"A regulatory GDPR certification is not documented or verified. Consult an authorized legal specialist. [03-security.md]"}
+{"id":"product-refresh","answer":"No. MeridianOps refreshes source records hourly and does not write updates back to CRM records. [01-product.txt]"}
+{"id":"csv-limit","answer":"The CSV import limit is 50,000 rows per file. [01-product.txt]"}
+{"id":"trial","answer":"The 14-day trial uses sandbox data only, not production access. [02-pricing.txt]"}
+{"id":"growth-price","answer":"Growth costs $1,200 per month and includes 50 named users. [02-pricing.txt]"}
+{"id":"enterprise-price","answer":"The Enterprise price is a custom quotation, not published as a fixed amount. [02-pricing.txt]"}
+{"id":"enterprise-sso","answer":"No. SAML SSO is available on Enterprise only. [03-security.txt]"}
+{"id":"residency","answer":"The fictional residency locations are EU and US. [03-security.txt]"}
+{"id":"support-hours","answer":"No 24/7 support is promised. Growth support is Monday–Friday, 09:00–17:00 UTC. [04-implementation.txt]"}
+{"id":"pilot-checklist","answer":"First, confirm the target use case, data ownership and decision maker. [04-implementation.txt]"}
+{"id":"soc2","answer":"SOC 2 certification is not documented here. Please ask a security specialist before making a claim. [03-security.txt]"}
+{"id":"uptime","answer":"No contractual uptime SLA is provided in the sample; a 99.99% uptime SLA cannot be confirmed. [04-implementation.txt]"}
+{"id":"gdpr","answer":"A regulatory GDPR certification is not documented or verified. Consult an authorized legal specialist. [03-security.txt]"}
