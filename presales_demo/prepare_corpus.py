@@ -39,8 +39,8 @@ def stage(output: Path, overwrite: bool = False) -> list[tuple[str, str]]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Stage synthetic documents for Azure TXT ingestion")
-    parser.add_argument("--output", type=Path, default=Path("data") / "presales",
-                        help="Staging directory (default: data/presales)")
+    parser.add_argument("--output", type=Path, default=Path("data"),
+                        help="Staging directory (default: data/) for upstream prepdocs ingestion")
     parser.add_argument("--force", action="store_true",
                         help="Replace existing files only if their bytes differ")
     args = parser.parse_args(argv)
