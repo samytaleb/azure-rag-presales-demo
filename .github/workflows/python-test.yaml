@@ -3,18 +3,22 @@ name: Python check
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - "**.md"
-      - ".azdo/**"
-      - ".devcontainer/**"
-      - ".github/**"
+    # Fork maintenance: this expensive upstream full matrix runs only for
+    # changes to the original application; presales_demo has its own lightweight CI.
+    paths:
+      - "app/**"
+      - "tests/**"
+      - "evals/**"
+      - "pyproject.toml"
+      - "requirements-dev.txt"
   pull_request:
     branches: [ main ]
-    paths-ignore:
-      - "**.md"
-      - ".azdo/**"
-      - ".devcontainer/**"
-      - ".github/**"
+    paths:
+      - "app/**"
+      - "tests/**"
+      - "evals/**"
+      - "pyproject.toml"
+      - "requirements-dev.txt"
   workflow_call:
 
 jobs:
