@@ -17,6 +17,37 @@ urlFragment: azure-search-openai-demo
 ---
 -->
 
+# AI Solution Engineering — B2B Presales RAG Evaluation
+
+**Portfolio extension by the fork maintainer — built on Microsoft's Azure Search OpenAI Demo.** This fork adds a synthetic enterprise presales knowledge base, a requirements-driven evaluation framework, automated tests and practical demo documentation. The underlying RAG application, Azure infrastructure and most source code are **Microsoft's original sample**.
+
+### Explore the original contribution
+
+| Start here | Contents |
+| --- | --- |
+| **[Read the full presales case study and engineering guide](presales_demo/README.md)** | Business framing, solution architecture, setup, evaluation methodology, limitations, reproducible demonstration |
+| [Synthetic B2B document corpus](presales_demo/data/) | Fictional product, pricing, security and implementation policies; no employer or customer data |
+| [12 evaluation scenarios](presales_demo/scenarios.json) | Source citations, expected claims, refusal cases and false-promise detection |
+| [Python evaluation harness](presales_demo/evaluate.py) | Offline fixture replay and optional real calls to upstream `POST /chat` |
+| [Unit tests](presales_demo/tests/) | Correctness and security-oriented regression checks |
+| [GitHub Actions](.github/workflows/presales-demo.yml) | No-cost, offline test checks |
+
+Run the extension with Python 3.10+ (Azure not required):
+
+```bash
+python -m unittest discover -s presales_demo/tests -v
+python -m presales_demo.prepare_corpus
+python -m presales_demo.evaluate --mode fixtures
+```
+
+**Scope and truthfulness:** Fixture replay verifies only the evaluation harness; it does *not* prove live model accuracy. A real RAG demonstration requires a configured Azure subscription, ingestion and retrieval and may incur costs. The upstream application must be deployed separately. This fork does not claim a live hosted demo. All synthetic prices and security policies are invented examples.
+
+**Attribution:** Original sample: [Azure-Samples/azure-search-openai-demo](https://github.com/Azure-Samples/azure-search-openai-demo) (MIT license). Fork additions are in `presales_demo/` and its CI workflow. See [source attribution and contribution boundaries](presales_demo/README.md#credit-and-scope).
+
+---
+
+## Original Microsoft Azure sample documentation
+
 # RAG chat app with Azure OpenAI and Azure AI Search (Python)
 
 This solution creates a ChatGPT-like frontend experience over your own documents using RAG (Retrieval Augmented Generation). It uses Azure OpenAI Service to access GPT models, and Azure AI Search for data indexing and retrieval.
