@@ -1,13 +1,7 @@
 name: Presales extension — offline tests
 on:
-  push:
-    paths:
-      - 'presales_demo/**'
-      - '.github/workflows/presales-demo.yml'
-  pull_request:
-    paths:
-      - 'presales_demo/**'
-      - '.github/workflows/presales-demo.yml'
+  # Portfolio fork: run verification only when explicitly requested.
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
