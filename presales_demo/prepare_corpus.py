@@ -6,7 +6,6 @@ This script never calls Azure and does not modify the Markdown originals.
 from __future__ import annotations
 
 import argparse
-import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
