@@ -37,24 +37,24 @@ class PresalesEvaluationTests(unittest.TestCase):
 
     def test_citation_cannot_be_plain_filename(self):
         case = self.cases[1]
-        result = evaluate_case(case, "CSV import limit 50,000. Source: 01-product.md")
+        result = evaluate_case(case, "CSV import limit 50,000. Source: 01-product.txt")
         self.assertFalse(result["pass"])
-        self.assertIn("01-product.md", result["missing_citations"])
+        self.assertIn("01-product.txt", result["missing_citations"])
 
     def test_forbidden_promise_is_rejected(self):
         case = self.cases[-2]
-        result = evaluate_case(case, "No documented uptime SLA, but I guarantee 99.99% uptime. [04-implementation.md]")
+        result = evaluate_case(case, "No documented uptime SLA, but I guarantee 99.99% uptime. [04-implementation.txt]")
         self.assertFalse(result["pass"])
         self.assertTrue(result["forbidden_phrases"])
 
     def test_wrong_fact_is_rejected(self):
         case = self.cases[3]
-        result = evaluate_case(case, "Growth includes 10 users for $450 per month. [02-pricing.md]")
+        result = evaluate_case(case, "Growth includes 10 users for $450 per month. [02-pricing.txt]")
         self.assertFalse(result["pass"])
 
     def test_source_parser(self):
-        refs = extract_sources("See [02-pricing.md], [folder/03-security.md#page=2] and no citation 01-product.md.")
-        self.assertEqual(refs, {"02-pricing.md", "03-security.md"})
+        refs = extract_sources("See [02-pricing.txt], [folder/03-security.txt#page=2] and no citation 01-product.txt.")
+        self.assertEqual(refs, {"02-pricing.txt", "03-security.txt"})
 
     def test_validate_remote_transport(self):
         self.assertEqual(endpoint_url("http://127.0.0.1:50505"), "http://127.0.0.1:50505/chat")
